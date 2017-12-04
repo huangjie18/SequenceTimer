@@ -29,30 +29,30 @@ extern u8 DELAY_STA;
 u8 ex_open_flag=0;//1±íÊ¾¿ª»úÍê³É±êÖ¾Î»
 u8 ex_close_flag=0;//1±íÊ¾¹Ø»úÍê³É±íÊ¾Î»
 
-void TIM4_Int_Init(u16 arr,u16 psc)
+void TIM2_Init()
 {
     TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
     NVIC_InitTypeDef NVIC_InitStructure;
 
-    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE); //Ê±ÖÓÊ¹ÄÜ
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE); //Ê±ÖÓÊ¹ÄÜ
 
     //¶¨Ê±Æ÷TIM3³õÊ¼»¯
-    TIM_TimeBaseStructure.TIM_Period = arr; //ÉèÖÃÔÚÏÂÒ»¸ö¸üĞÂÊÂ¼ş×°Èë»î¶¯µÄ×Ô¶¯ÖØ×°ÔØ¼Ä´æÆ÷ÖÜÆÚµÄÖµ
-    TIM_TimeBaseStructure.TIM_Prescaler =psc; //ÉèÖÃÓÃÀ´×÷ÎªTIMxÊ±ÖÓÆµÂÊ³ıÊıµÄÔ¤·ÖÆµÖµ
+    TIM_TimeBaseStructure.TIM_Period = 999; //ÉèÖÃÔÚÏÂÒ»¸ö¸üĞÂÊÂ¼ş×°Èë»î¶¯µÄ×Ô¶¯ÖØ×°ÔØ¼Ä´æÆ÷ÖÜÆÚµÄÖµ
+    TIM_TimeBaseStructure.TIM_Prescaler =7199; //ÉèÖÃÓÃÀ´×÷ÎªTIMxÊ±ÖÓÆµÂÊ³ıÊıµÄÔ¤·ÖÆµÖµ
     TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1; //ÉèÖÃÊ±ÖÓ·Ö¸î:TDTS = Tck_tim
     TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  //TIMÏòÉÏ¼ÆÊıÄ£Ê½
-    TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure); //¸ù¾İÖ¸¶¨µÄ²ÎÊı³õÊ¼»¯TIMxµÄÊ±¼ä»ùÊıµ¥Î»
+    TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure); //¸ù¾İÖ¸¶¨µÄ²ÎÊı³õÊ¼»¯TIMxµÄÊ±¼ä»ùÊıµ¥Î»
 
-    TIM_ITConfig(TIM4,TIM_IT_Update,ENABLE ); //Ê¹ÄÜÖ¸¶¨µÄTIM3ÖĞ¶Ï,ÔÊĞí¸üĞÂÖĞ¶Ï
+    TIM_ITConfig(TIM2,TIM_IT_Update,ENABLE ); //Ê¹ÄÜÖ¸¶¨µÄTIM3ÖĞ¶Ï,ÔÊĞí¸üĞÂÖĞ¶Ï
 
     //ÖĞ¶ÏÓÅÏÈ¼¶NVICÉèÖÃ
-    NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;  //TIM3ÖĞ¶Ï
+    NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;  //TIM3ÖĞ¶Ï
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQÍ¨µÀ±»Ê¹ÄÜ
     NVIC_Init(&NVIC_InitStructure);  //³õÊ¼»¯NVIC¼Ä´æÆ÷
 
-    TIM_Cmd(TIM4, ENABLE);  //Ê¹ÄÜTIMx
+    TIM_Cmd(TIM2, ENABLE);  //Ê¹ÄÜTIMx
 }
 
 u8 PIN_STA;//±ê¼ÇGPIO_Pin_7×´Ì¬
@@ -289,14 +289,14 @@ u8 CHAN_O_C(u16 sec_cnt)
   u8 A;
   u8 IS_EX_CLOSE=0;//±ê¼ÇÊÇ·ñ¿ÉÒÔÖ´ĞĞCHANNEL¹Ø±Õº¯Êı
 
-void TIM4_IRQHandler(void)   //TIM3ÖĞ¶Ï
+void TIM2_IRQHandler(void)   //TIM3ÖĞ¶Ï
 {
 
     u16 static SEC_CNT_O;
     u16 static SEC_CNT_C;
 	  u16 static SEV_CNT;
 		   
-    if (TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET)  //¼ì²éTIM3¸üĞÂÖĞ¶Ï·¢ÉúÓë·ñ
+    if (TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET)  //¼ì²éTIM3¸üĞÂÖĞ¶Ï·¢ÉúÓë·ñ
         {
        
 				if(LINK_FLAG==0){	
@@ -332,20 +332,19 @@ void TIM4_IRQHandler(void)   //TIM3ÖĞ¶Ï
             
 						 }										
 				}
-				 												
-			if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_3)==1){
+
+				
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_7)==1){//¼ì²éNEXT½ÅÊÇ·ñÎª¸ßµçÆ½
              				
-				  if(PIN_STA==1&&DELAY_STA==0){	//µÈ´ıÒ»ÃëÑÓÊ±µ½À´					
+				  if(PIN_STA==1&&DELAY_STA==0){	//µÚ°ËÈç¹ûµÀ´					
 						IS_EX_CLOSE=1;							 						
 			    	}
 				}
-				
-				
+							
 				if(DELAY_STA==1){
 					  IS_EX_CLOSE=0;		   							 					
 				   }
-				
-				
+								
 				if(IS_EX_CLOSE==0){
 				if(relay_key_dev.relay_key_state==RE_KEY_UP){
 				
@@ -354,11 +353,9 @@ void TIM4_IRQHandler(void)   //TIM3ÖĞ¶Ï
 						 A=CHAN_O_C(SEC_CNT_C); 
 						 SEC_CNT_O=8000-SEC_CNT_C;
 						 
-					 }
-					
+					 }				
 				}		
-			}
-						
+			}					
 				 }
 				
             TIM_ClearITPendingBit(TIM4, TIM_IT_Update); 		//Çå³ıTIMx¸üĞÂÖĞ¶Ï±êÖ¾

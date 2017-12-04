@@ -18,16 +18,10 @@
 #include "adc.h"
 #include "usart.h"
 #include "pwm.h"
-
-//过了这个村，我在下个村等你
-
-
-
 extern _lcd_dev lcddev;
 extern _flag_dev flag_dev;
 extern u8 TIM3CH1_CAPTURE_STA;//输入状态
 extern u16 TIM3CH1_CAPTURE_VAL;//输入捕获值
-
 
 u8 _STA;//记录通道延时函数执行状态   
 u8 static flag_;
@@ -187,7 +181,7 @@ int main(void)
     LCD_Clear(BLUE);
     flag_dev.lock_sta=L_OPEN;//屏幕lock
     flag_dev.action_flag=HOME;
-	  TIM4_Int_Init(999,7199);
+	  TIM2_Init();
 	  TIM5_Init();
     Pwm_Init();
     Pwm_Input_Init();
