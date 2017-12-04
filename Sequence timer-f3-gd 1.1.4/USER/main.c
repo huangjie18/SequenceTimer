@@ -19,6 +19,10 @@
 #include "usart.h"
 #include "pwm.h"
 
+//过了这个村，我在下个村等你
+
+
+
 extern _lcd_dev lcddev;
 extern _flag_dev flag_dev;
 extern u8 TIM3CH1_CAPTURE_STA;//输入状态
