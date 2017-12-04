@@ -1,0 +1,54 @@
+#include "switch_setting_page_activity.h"
+#include "lcd.h"
+#include "gui.h"
+
+void switch_setting_page_activity(){
+
+	   gui_draw_arcrectangle(95,45,225,35,4,1,BLUE,BLUE);
+	   gui_draw_arcrectangle(95,85,225,35,4,1,BLUE,BLUE);
+	   gui_draw_arcrectangle(95,125,225,35,4,1,BLUE,BLUE);
+	   gui_draw_arcrectangle(95,165,225,35,4,1,BLUE,BLUE);	
+	
+	   gui_draw_arcrectangle(172,48, 145,30,4,1,WHITE,WHITE);
+	   gui_draw_arcrectangle(172,88, 145,30,4,1,WHITE,WHITE);
+     gui_draw_arcrectangle(172,128,145,30,4,1,WHITE,WHITE);
+	   gui_draw_arcrectangle(172,168,145,30,4,1,WHITE,WHITE); 
+	
+	   
+	   LCD_DrawLtrigo(95,0,125,40,LEFT,WHITE);
+	   LCD_DrawLtrigo(290,0,319,40,RIGHT,WHITE);
+	
+	   LCD_Show_3030_String(130,5,"CHAN SWITCH",WHITE);
+	
+ //	 LCD_Show_2424_String(100,50,"Chan1",WHITE);
+//	 LCD_Show_2424_String(100,90,"Chan2",WHITE);
+//	 LCD_Show_2424_String(100,130,"Chan3",WHITE);
+//	 LCD_Show_2424_String(100,170,"Chan4",WHITE);
+	
+	  
+		 LCD_Show_2424_String(100,50,"Chan5",WHITE);
+		 LCD_Show_2424_String(100,90,"Chan6",WHITE);
+		 LCD_Show_2424_String(100,130,"Chan7",WHITE);
+		 LCD_Show_2424_String(100,170,"Chan8",WHITE);
+	
+//	   LCD_Show_3030_String(230,50,"ON",BLACK);
+//		 LCD_Show_3030_String(230,90,"ON",BLACK);
+//		 LCD_Show_3030_String(230,130,"ON",BLACK);
+//		 LCD_Show_3030_String(230,170,"ON",BLACK);
+
+     LCD_Show_3030_String(230,50,"OFF",BLACK);
+		 LCD_Show_3030_String(230,90,"OFF",BLACK);
+		 LCD_Show_3030_String(230,130,"OFF",BLACK);
+		 LCD_Show_3030_String(230,170,"OFF",BLACK);
+     
+
+
+}
+
+void switch_setting_page_action(){
+
+	
+	
+	
+
+}

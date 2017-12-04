@@ -1,0 +1,29 @@
+#include "pwd_page.h"
+#include "gui.h"
+#include "lcd.h"
+void pwd_page_activity(){
+
+	   gui_draw_arcrectangle(95,45,225,30,1,1, BLUE,BLUE);
+	   gui_draw_arcrectangle(95,109,225,30,1,1,WHITE,WHITE);
+	   gui_draw_arcrectangle(95,173,225,30,1,1,WHITE,WHITE);	
+     
+	   gui_draw_arcrectangle(160,48,158,24,1,1,WHITE,WHITE);
+	   LCD_DrawLtrigo(160,48,185,73,LEFT,BLUE);
+	   LCD_DrawLtrigo(292,48,317,73,RIGHT,BLUE);
+	
+	  
+	    LCD_Show_3030_String(150,5,"PASSWORD",WHITE);
+	   LCD_Show_2424_String(95, 48,"TYPE",WHITE);
+	   LCD_Show_2424_String(100,80,"new password:",WHITE);
+
+	   LCD_Show_2424_String(100,144,"Re-enter:",WHITE);
+
+	   LCD_Show_2424_String(215, 48,"User",BLACK);
+//	   LCD_Show_2424_String(190, 48,"Settings",BLACK);
+	   
+}
+
+void pwd_page_action(){
+
+
+}

@@ -1,0 +1,47 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.14.0.0
+Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Jsiparrow Microsoft, Microsoft, LIC=P6F63-AZHDT-F10PT-RU87T-IIFFH-AV58D
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.14.0.0
+Toolchain Path:  D:\MDK5.14\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 1 (build 106)
+Assembler:       Armasm.exe V5.05 update 1 (build 106)
+Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
+Library Manager: ArmAr.exe V5.05 update 1 (build 106)
+Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
+CPU DLL:         SARMCM3.DLL V5.14.0.0
+Dialog DLL:      DCM.DLL V1.13.1.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.14.0_KEIL
+Dialog DLL:      TCM.DLL V1.14.4.0
+ 
+<h2>Project:</h2>
+F:\Ê±ÐòÆ÷1.1\Sequence timer-f3-gd 1.1.4\sequence timer.uvprojx
+Project File Date:  11/29/2017
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling pwm.c...
+HARDWARE\PWM\pwm.c(121): warning:  #69-D: integer conversion resulted in truncation
+      TIM_TimeBaseStructure.TIM_Prescaler =72000-1;     //Ô¤·ÖÆµÆ÷
+HARDWARE\PWM\pwm.c(115): warning:  #177-D: variable "GPIO_InitStructure" was declared but never referenced
+      GPIO_InitTypeDef GPIO_InitStructure;
+HARDWARE\PWM\pwm.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=63676 RO-data=51432 RW-data=424 ZI-data=2064  
+FromELF: creating hex file...
+".\OBJ\sequence timer.axf" - 0 Error(s), 2 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  F:\Ê±ÐòÆ÷1.1\Sequence timer-f3-gd 1.1.4\RTE
+  D:\MDK5.14\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+</pre>
+</body>
+</html>
