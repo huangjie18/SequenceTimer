@@ -18,8 +18,6 @@
 
 
 int gpio_pin[8]= {GPIO_Pin_0,GPIO_Pin_1,GPIO_Pin_2,GPIO_Pin_3,GPIO_Pin_4,GPIO_Pin_5,GPIO_Pin_6,GPIO_Pin_7};
-
-
 extern _flag_dev flag_dev;
 extern _chan_open_data chan_open_data;//Í¨µÀ¿ªÑÓÊ±Êı¾İ
 extern _chan_close_data chan_close_data;//Í¨µÀ¹ØÑÓÊ±Êı¾İ
@@ -34,25 +32,23 @@ void TIM2_Init()
     TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
     NVIC_InitTypeDef NVIC_InitStructure;
 
-    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE); //Ê±ÖÓÊ¹ÄÜ
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
 
-    //¶¨Ê±Æ÷TIM3³õÊ¼»¯
     TIM_TimeBaseStructure.TIM_Period = 999; //ÉèÖÃÔÚÏÂÒ»¸ö¸üĞÂÊÂ¼ş×°Èë»î¶¯µÄ×Ô¶¯ÖØ×°ÔØ¼Ä´æÆ÷ÖÜÆÚµÄÖµ
     TIM_TimeBaseStructure.TIM_Prescaler =7199; //ÉèÖÃÓÃÀ´×÷ÎªTIMxÊ±ÖÓÆµÂÊ³ıÊıµÄÔ¤·ÖÆµÖµ
     TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1; //ÉèÖÃÊ±ÖÓ·Ö¸î:TDTS = Tck_tim
     TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  //TIMÏòÉÏ¼ÆÊıÄ£Ê½
     TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure); //¸ù¾İÖ¸¶¨µÄ²ÎÊı³õÊ¼»¯TIMxµÄÊ±¼ä»ùÊıµ¥Î»
 
-    TIM_ITConfig(TIM2,TIM_IT_Update,ENABLE ); //Ê¹ÄÜÖ¸¶¨µÄTIM3ÖĞ¶Ï,ÔÊĞí¸üĞÂÖĞ¶Ï
+    TIM_ITConfig(TIM2,TIM_IT_Update,ENABLE ); //ÔÊĞí¸üĞÂÖĞ¶Ï
 
-    //ÖĞ¶ÏÓÅÏÈ¼¶NVICÉèÖÃ
-    NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;  //TIM3ÖĞ¶Ï
+    NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn; 
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQÍ¨µÀ±»Ê¹ÄÜ
-    NVIC_Init(&NVIC_InitStructure);  //³õÊ¼»¯NVIC¼Ä´æÆ÷
+    NVIC_Init(&NVIC_InitStructure);  
 
-    TIM_Cmd(TIM2, ENABLE);  //Ê¹ÄÜTIMx
+    TIM_Cmd(TIM2, ENABLE); 
 }
 
 u8 PIN_STA;//±ê¼ÇGPIO_Pin_7×´Ì¬
@@ -288,7 +284,6 @@ u8 CHAN_O_C(u16 sec_cnt)
 
   u8 A;
   u8 IS_EX_CLOSE=0;//±ê¼ÇÊÇ·ñ¿ÉÒÔÖ´ĞĞCHANNEL¹Ø±Õº¯Êı
-
 void TIM2_IRQHandler(void)   //TIM3ÖĞ¶Ï
 {
 
@@ -323,6 +318,8 @@ void TIM2_IRQHandler(void)   //TIM3ÖĞ¶Ï
 			
 			}else if(LINK_FLAG==1){
 				 
+			
+				
 				 if(relay_key_dev.relay_key_state==RE_KEY_DOWN){
 				      
 				     if(A!=1){						 
@@ -334,11 +331,12 @@ void TIM2_IRQHandler(void)   //TIM3ÖĞ¶Ï
 				}
 
 				
-			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_7)==1){//¼ì²éNEXT½ÅÊÇ·ñÎª¸ßµçÆ½
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_6)==1){//¼ì²éNEXT½ÅÊÇ·ñÎª¸ßµçÆ½
              				
-				  if(PIN_STA==1&&DELAY_STA==0){	//µÚ°ËÈç¹ûµÀ´					
+				  if(PIN_STA==1&&DELAY_STA==0){	//chan8ÒÑ¾­´ò¿ª£¬µÈ´ıÒ»ÃëÖÓÑÓÊ±´				
 						IS_EX_CLOSE=1;							 						
 			    	}
+					LCD_Clear(RED);
 				}
 							
 				if(DELAY_STA==1){
@@ -358,7 +356,7 @@ void TIM2_IRQHandler(void)   //TIM3ÖĞ¶Ï
 			}					
 				 }
 				
-            TIM_ClearITPendingBit(TIM4, TIM_IT_Update); 		//Çå³ıTIMx¸üĞÂÖĞ¶Ï±êÖ¾
+            TIM_ClearITPendingBit(TIM2, TIM_IT_Update); 		//Çå³ıTIMx¸üĞÂÖĞ¶Ï±êÖ¾
         }
 }
 

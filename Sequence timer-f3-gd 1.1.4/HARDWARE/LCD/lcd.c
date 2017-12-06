@@ -88,7 +88,7 @@ void LCD_IO_FSMC_Init(){
 	
   
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_FSMC,ENABLE);	//使能FSMC时钟
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_GPIOB|RCC_APB2Periph_GPIOD|RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOE,ENABLE);//使能PORTB,D,E,G以及AFIO复用功能时钟
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD|RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOE,ENABLE);//使能PORTB,D,E,G以及AFIO复用功能时钟
 
  
  	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;				 //PD13 推挽输出 背光

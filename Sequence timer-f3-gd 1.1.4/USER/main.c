@@ -167,33 +167,30 @@ int main(void)
    
 	 
     delay_init();
-    LCD_IO_FSMC_Init();
-    LCD_Init();
-    gui_init();
-    key_init();
-  //RTC_Init();
-    Adc_Init();
-    tp_dev.init();
-    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断优先级分组为组2：2位抢占优先级，2位响应优先级
-     
+   LCD_IO_FSMC_Init();
+   LCD_Init();
+   gui_init();
+   key_init();
+    //RTC_Init();
+   Adc_Init();
+    //tp_dev.init(); 注释了IIC的初始化函数
+    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断优先级分组为组2：2位抢占优先级，2位响应优先级     
     GPIO_SetBits(GPIOD,GPIO_Pin_13);
     GPIO_SetBits(GPIOC,GPIO_Pin_13);
     LCD_Clear(BLUE);
     flag_dev.lock_sta=L_OPEN;//屏幕lock
-    flag_dev.action_flag=HOME;
+    flag_dev.action_flag=HOME;		
 	  TIM2_Init();
 	  TIM5_Init();
     Pwm_Init();
     Pwm_Input_Init();
-		Pwm_Output_Init();
-		
+		Pwm_Output_Init();  
     while(1)
         {	
 					
 			  Test_Out();	
 			  Executing_In_MainWhile();			
-		   
-				
+		  				
         }
 
 }

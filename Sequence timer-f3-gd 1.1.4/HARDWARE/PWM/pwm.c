@@ -13,10 +13,7 @@
 使计数器为10K，0.1毫秒计数，72000000/（7199+1）=10K，自动装载值为200，PWM频率为50HZ
 */
 
-/*
-1，三个定时器的优先级问题
-2，TIM5用于检测是否有级联和CHANNEL全部关闭时的低电平延时
-*/
+
 extern _flag_dev flag_dev;
 
 u16 SEC_CNT=0;
@@ -28,21 +25,20 @@ u8 FEQUENCE_FLAG;//标记接收到的频率
 u8 DELAY_STA;//是否检测到延时标志位
 u8 TIM3CH1_CAPTURE_STA=0;//输入状态
 u32 TIM3CH1_CAPTURE_VAL;//输入捕获值
-/*
-定时器TIM1的初始化函数
-*/
+
 void Pwm_Init()
 {
 	
     GPIO_InitTypeDef  GPIO_InitStructure;
-    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3|RCC_APB1Periph_TIM2,ENABLE);
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_AFIO, ENABLE);//使能复用功能时钟、TIM1
+	  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_GPIOB|RCC_APB2Periph_AFIO, ENABLE);//使能复用功能时钟、TIM1
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3|RCC_APB1Periph_TIM4,ENABLE);
 
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
    
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;		//NEXT脚
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;		//NEXT脚
     GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF_OD;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_Init(GPIOA, &GPIO_InitStructure);
+    GPIO_Init(GPIOB, &GPIO_InitStructure);
 	
 	  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;		//UPPER脚
     GPIO_InitStructure.GPIO_Mode=GPIO_Mode_IPU;
@@ -50,14 +46,15 @@ void Pwm_Init()
   
 
 }
-void Set_Frequence(u16 arr){
+void Set_Frequence(u16 arr)
+{
 
-					 TIM_SetAutoreload(TIM2,arr);
-				   TIM_SetCompare4(TIM2,arr/2);
-
+					 TIM_SetAutoreload(TIM4,arr);
+				   TIM_SetCompare1(TIM4,arr/2);
 }
 
-void Delay_One_Sec(){
+void Delay_One_Sec()
+{
    
 	   GPIO_InitTypeDef  GPIO_InitStructure;
 	
@@ -71,12 +68,13 @@ void Delay_One_Sec(){
             GPIO_InitStructure.GPIO_Mode=GPIO_Mode_IPD;
             GPIO_Init(GPIOA, &GPIO_InitStructure);		
 			      delay_ms(200);
-					
+					 LCD_Clear(WHITE);
 				    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;		//UPPER脚
             GPIO_InitStructure.GPIO_Mode=GPIO_Mode_IPU;
-            GPIO_Init(GPIOA, &GPIO_InitStructure); 		
+            GPIO_Init(GPIOA, &GPIO_InitStructure); 			
 					
 				    FEQUENCE_FLAG=0;
+					
 				}		
 			}			
 		}
@@ -94,20 +92,20 @@ void Pwm_Output_Init()
     TIM_TimeBaseStructure.TIM_Prescaler=7199;
     TIM_TimeBaseStructure.TIM_ClockDivision=0;//设置定时器时钟(CK_INT)频率与数字滤波器(ETR，TIx)使用的采样频率之间的分频比例的（与输入捕获相关）， 0表示滤波器的频率和定时器的频率是一样的。
     TIM_TimeBaseStructure.TIM_CounterMode=TIM_CounterMode_Up;
-    TIM_TimeBaseInit(TIM2,&TIM_TimeBaseStructure);
+    TIM_TimeBaseInit(TIM4,&TIM_TimeBaseStructure);
 
     TIM_OCInitStructure.TIM_OCMode=TIM_OCMode_PWM2;
     TIM_OCInitStructure.TIM_OutputState=TIM_OutputState_Enable;
     TIM_OCInitStructure.TIM_Pulse =0; //设置待装入捕获比较寄存器的脉冲值
     TIM_OCInitStructure.TIM_OCPolarity=TIM_OCPolarity_High;
-    TIM_OC4Init(TIM2,&TIM_OCInitStructure);  
-    TIM_OC4PreloadConfig(TIM2,TIM_OCPreload_Enable);//使能TIM2在CCR2上的预装载寄存器
+    TIM_OC1Init(TIM4,&TIM_OCInitStructure);  
+    TIM_OC1PreloadConfig(TIM4,TIM_OCPreload_Enable);//使能TIM2在CCR2上的预装载寄存器	
 	
-    TIM_ARRPreloadConfig(TIM2, ENABLE); //使能TIMx在ARR上的预装载寄存器
-    TIM_Cmd(TIM2,ENABLE);
+    TIM_ARRPreloadConfig(TIM4, ENABLE); //使能TIMx在ARR上的预装载寄存器
+    TIM_Cmd(TIM4,ENABLE);
 	   
+	
 }
-
 
 void Pwm_Input_Init()
 {
@@ -184,7 +182,6 @@ void TIM3_IRQHandler(void)
     TIM_ClearITPendingBit(TIM3,TIM_IT_CC1|TIM_IT_Update);//清除中断标志位
 }
 
-
 void TIM5_Init()
 {
 
@@ -208,7 +205,6 @@ void TIM5_Init()
 
 }
 
-
 void TIM5_IRQHandler(void)
 {
 
@@ -217,17 +213,18 @@ void TIM5_IRQHandler(void)
           
 //------------------------主机识别是否有级联、从机CHANNEL是否全部关闭到最后一个---------------
 
-            if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_3)==1)
+            if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_6)==1)
                 {
                     LINK_FLAG=1;            //标记有级联              
-                    if(100<LINK_CNT&&LINK_CNT<500) //检测到有一秒的延时
+                    if(70<LINK_CNT&&LINK_CNT<250) //检测到有一秒的延时
                         {
                             DELAY_STA=1; //TODO：表示从机已经全部CHANNEL关闭了												  												 
                         }
                    LINK_CNT=0;
+												
                 }
 								
-            else if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_3)==0) //设置每
+            else if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_6)==0) //设置每
                 {
 
                     if(LINK_CNT>1000) //持续三秒钟低电平
@@ -235,6 +232,8 @@ void TIM5_IRQHandler(void)
                             LINK_FLAG=0; //标记没有级联                     
                             TIM3CH1_CAPTURE_VAL=0;//清除检测到的值禁用KEY开关条件）
 													  LINK_CNT=0;
+													  
+													
                         }
                     LINK_CNT+=10;
 										
@@ -243,17 +242,19 @@ void TIM5_IRQHandler(void)
 //---------------------------根据捕获频率改变按键状态----------------------------------
               if(TIM3CH1_CAPTURE_STA&0X80) //捕获到一次上升沿，表示有级联
                 {									
+									
                     if(150<TIM3CH1_CAPTURE_VAL&&TIM3CH1_CAPTURE_VAL<250)
                         {                          
                            relay_key_dev.relay_key_state=RE_KEY_DOWN;
 													 FEQUENCE_FLAG=25;
 													 LINK_FLAG=1;            //标记有级联 
+														
                         }
                     else if(250<TIM3CH1_CAPTURE_VAL&&TIM3CH1_CAPTURE_VAL<350)
                         {
                             relay_key_dev.relay_key_state=RE_KEY_UP;
 													  LINK_FLAG=1;            //标记有级联 
-                            
+                           
                         }   	          		                 
                 }
 																							

@@ -443,8 +443,8 @@ u8 TP_Init(void)
 		if(TP_Get_Adjdata())return 0;//已经校准
 		else			  		//未校准?
 		{ 										    
-			LCD_Clear(WHITE);	//清屏
-			TP_Adjust();  		//屏幕校准  
+			//LCD_Clear(WHITE);	//清屏
+			//TP_Adjust();  		//屏幕校准  
 		}			
 	return 1; 									 
 }

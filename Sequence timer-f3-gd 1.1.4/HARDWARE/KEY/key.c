@@ -113,8 +113,8 @@ void relay_key()
                                     if(flag_dev.action_flag==HOME)
                                         {
 
-                                            gui_draw_arcrectangle(94,0,151,40,1,1,RED,RED);
-                                            LCD_Show_3030_String(100,5,"CHAN OPEN",WHITE);
+                                          //  gui_draw_arcrectangle(94,0,151,40,1,1,RED,RED);
+                                          //  LCD_Show_3030_String(100,5,"CHAN OPEN",WHITE);
 
                                         }
                                 }
@@ -123,8 +123,8 @@ void relay_key()
                                     relay_key_dev.relay_key_state=RE_KEY_UP;
                                     if(flag_dev.action_flag==HOME)
                                         {
-                                            gui_draw_arcrectangle(94,0,151,40,1,1,RED,RED);
-                                            LCD_Show_3030_String(100,5,"CHAN CLOSE",WHITE);
+                                         //   gui_draw_arcrectangle(94,0,151,40,1,1,RED,RED);
+                                         //   LCD_Show_3030_String(100,5,"CHAN CLOSE",WHITE);
 
                                         }
                                 }

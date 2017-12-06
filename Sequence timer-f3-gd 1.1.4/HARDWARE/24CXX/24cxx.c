@@ -10,7 +10,7 @@
 //初始化IIC接口
 void AT24CXX_Init(void)
 {
-	IIC_Init();
+	//IIC_Init();
 }
 //在AT24CXX指定地址读出一个数据
 //ReadAddr:开始读数的地址  
