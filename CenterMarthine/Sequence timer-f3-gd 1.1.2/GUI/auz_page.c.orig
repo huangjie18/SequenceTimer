@@ -1,0 +1,17 @@
+#include "auz_page.h"
+#include "gui.h"
+#include "lcd.h"
+void auz_page_activity(){
+
+	 gui_draw_arcrectangle(95,109,225,30,1,1,WHITE,WHITE);
+	 LCD_Show_3030_String(115,5,"authorization",WHITE);
+	 LCD_Show_2424_String(100,80,"AUZ code:",WHITE);
+	
+}
+
+void auz_page_action(){
+
+
+
+}
+

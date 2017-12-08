@@ -1,0 +1,938 @@
+#include "page.h"
+#include "gui.h"
+#include "lcd.h"
+
+
+
+/*
+主页面
+*/
+
+void main_page()
+{
+
+    //通道显示数字1~8
+
+
+    LCD_ShowChar(13,0, 1,36,WHITE);
+    LCD_ShowChar(52,0, 2,36,WHITE);
+    LCD_ShowChar(91,0, 3,36,WHITE);
+    LCD_ShowChar(130,0,4,36,WHITE);
+    LCD_ShowChar(169,0,5,36,WHITE);
+    LCD_ShowChar(208,0,6,36,WHITE);
+    LCD_ShowChar(247,0,7,36,WHITE);
+    LCD_ShowChar(286,0,8,36,WHITE);
+
+
+
+    //220V~
+    LCD_ShowChar(20,58,2,150,WHITE);
+    LCD_ShowChar(95,58,2,150,WHITE);
+    LCD_ShowChar(170,58,0,150,WHITE);
+    LCD_ShowChar(245,73,0,80,WHITE);
+    LCD_ShowChar(245,140,1,80,WHITE);
+
+    //时间
+    LCD_ShowChar(120,206,0,36, WHITE);
+    LCD_ShowChar(138,206,0,36, WHITE);
+    LCD_ShowChar(150,206,10,36,WHITE);//":"
+    LCD_ShowChar(161,206,0,36, WHITE);
+    LCD_ShowChar(179,206,0,36, WHITE);
+
+    //底部按键
+
+    LCD_draw_arcrectangle(0,206,99,33,5,BLUE,BLACK);
+
+    LCD_ShowChar(4,213,2, 30,WHITE);//每个字符坐标相差13个像素点
+    LCD_ShowChar(17,213,7,30,WHITE);
+    LCD_ShowChar(30,213,0,30,WHITE);
+    LCD_ShowChar(43,213,13,30,WHITE);
+    LCD_ShowChar(56,213,13,30,WHITE);
+    LCD_ShowChar(69,213,4,30,WHITE);
+    LCD_ShowChar(82,213,11,30,WHITE);
+
+
+    LCD_draw_arcrectangle(221,206,99,33,5,BLUE,BLACK);
+
+    LCD_ShowChar(231,213,18, 30,WHITE);
+    LCD_ShowChar(244,213,24,30,WHITE);
+    LCD_ShowChar(257,213,18,30,WHITE);
+    LCD_ShowChar(270,213,19,30,WHITE);
+    LCD_ShowChar(283,213,4,30,WHITE);
+    LCD_ShowChar(296,213,12,30,WHITE);
+
+
+
+
+
+
+}
+
+/*
+通道页面
+*/
+void channel_set_page()
+{
+    LCD_draw_arcrectangle(0,0,320,45,5,RED,BLACK);//标题框
+    LCD_Show_3636_String(108,10,"CHANNEL",WHITE);
+
+    LCD_draw_arcrectangle(60,73,220,40,5,BLUE,BLACK);	//通道延时设置
+    LCD_Show_3030_String(70,83,"CHAN",WHITE);
+    LCD_Show_3030_String(135,83,"DELAY",WHITE);
+    LCD_Show_3030_String(210,83,"TIME",WHITE);
+
+    LCD_draw_arcrectangle(60,129,220,40,5,BLUE,BLACK);//通道开关设置
+    LCD_Show_3030_String(95,139,"CHAN",WHITE);
+    LCD_Show_3030_String(165,139,"SWITCH",WHITE);
+
+//
+//	LCD_draw_arcrectangle(0,206,90,33,5,BLUE,BLACK);//底部按键
+//	LCD_Show_3030_String(16,212,"BACK",WHITE);
+    LCD_draw_arcrectangle(230,206,90,33,5,BLUE,BLACK);//底部按键
+    LCD_Show_3030_String(246,212,"BACK",WHITE);
+
+}
+/*
+通道定时主页
+*/
+void channel_delay_main_page()
+{
+    LCD_draw_arcrectangle(0,0,320,45,5,RED,BLACK);//标题框
+    LCD_Show_3636_String(58,10,"CHANNEL",WHITE);
+    LCD_Show_3636_String(180,10,"DELAY",WHITE);
+
+    LCD_draw_arcrectangle(55,73,225,40,5,BLUE,BLACK);	//开延时设置
+    LCD_Show_3030_String(63,83,"OPEN",WHITE);
+    LCD_Show_3030_String(132,83,"DALAY",WHITE);
+    LCD_Show_3030_String(208,83,"TIME",WHITE);
+
+    LCD_draw_arcrectangle(55,129,225,40,5,BLUE,BLACK);//关延时设置
+    LCD_Show_3030_String(60,139,"CLOSE",WHITE);
+    LCD_Show_3030_String(142,139,"DELAY",WHITE);
+    LCD_Show_3030_String(215,139,"TIME",WHITE);
+
+
+//LCD_draw_arcrectangle(0,206,90,33,5,BLUE,BLACK);//底部按键
+//LCD_Show_3030_String(16,212,"BACK",WHITE);
+    LCD_draw_arcrectangle(230,206,90,33,5,BLUE,BLACK);//底部按键
+    LCD_Show_3030_String(246,212,"BACK",WHITE);
+
+
+
+}
+
+/*
+通道延时设置页面
+pagenunber:1,2对应两个页面
+*/
+
+void channel_delay_set_page(u8 pagenunber)
+{
+
+    if(pagenunber==1)
+        {
+
+
+            LCD_draw_arcrectangle(0,0,320,45,5,BLUE,BLACK);//标题框
+            LCD_Show_3636_String(25,10,"CHAN",WHITE);
+            LCD_Show_3636_String(95,10,"TIME",WHITE)	;
+            LCD_Show_3636_String(165,10,"DELAY",WHITE)	;
+            LCD_ShowChar(242,5,1,36,WHITE);
+            LCD_ShowChar(258,5,40,36,WHITE);
+            LCD_ShowChar(274,5,2,36,WHITE);
+
+
+            /*------------------------------------------------------------*/
+            LCD_draw_arcrectangle(0,46,90,40,5,BLUE,BLACK);	//通道1~4
+            LCD_draw_arcrectangle(90,46,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,56,120,76,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,56,310,76,RIGHT,BLUE);
+            LCD_Show_3030_String(10,56,"CHAN",WHITE);
+            LCD_ShowChar(64,56,28,30,WHITE);
+
+//	LCD_ShowChar(160,48,0,36,BLACK);
+//	LCD_ShowChar(176,48,0,36,BLACK);
+//	LCD_ShowChar(192,48,0,36,BLACK);
+            LCD_ShowChar(204,48,38,36,BLACK);	//"."
+//  LCD_ShowChar(218,48,0,36,BLACK);
+            LCD_Show_3030_String(240,57,"S",BLACK);
+
+            /*------------------------------------------------------------*/
+            LCD_draw_arcrectangle(0,86,90,40,5,BLUE,BLACK);
+            LCD_draw_arcrectangle(90,86,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,96,120,116,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,96,310,116,RIGHT,BLUE);
+            LCD_Show_3030_String(10,96,"CHAN",WHITE);
+            LCD_ShowChar(64,96,29,30,WHITE);
+
+            //LCD_ShowChar(160,88,0,36,BLACK);
+            //LCD_ShowChar(176,88,0,36,BLACK);
+            //LCD_ShowChar(192,88,0,36,BLACK);
+            LCD_ShowChar(204,88,38,36,BLACK);	//"."
+            //LCD_ShowChar(218,88,0,36,BLACK);
+            LCD_Show_3030_String(240,97,"S",BLACK);
+            /*------------------------------------------------------------*/
+
+            LCD_draw_arcrectangle(0,126,90,40,5,BLUE,BLACK);
+            LCD_draw_arcrectangle(90,126,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,136,120,156,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,136,310,156,RIGHT,BLUE);
+            LCD_Show_3030_String(10,136,"CHAN",WHITE);
+            LCD_ShowChar(64,136,30,30,WHITE);
+
+            //LCD_ShowChar(160,128,0,36,BLACK);
+            //LCD_ShowChar(176,128,0,36,BLACK);
+            //LCD_ShowChar(192,128,0,36,BLACK);
+            LCD_ShowChar(204,128,38,36,BLACK);	//"."
+// LCD_ShowChar(218,128,0,36,BLACK);
+            LCD_Show_3030_String(240,137,"S",BLACK);
+            /*------------------------------------------------------------*/
+            LCD_draw_arcrectangle(0,166,90,40,5,BLUE,BLACK);
+            LCD_draw_arcrectangle(90,166,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,176,120,196,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,176,310,196,RIGHT,BLUE);
+            LCD_Show_3030_String(10,176,"CHAN",WHITE);
+            LCD_ShowChar(64,176,31,30,WHITE);
+
+            //LCD_ShowChar(160,168,0,36,BLACK);
+            //LCD_ShowChar(176,168,0,36,BLACK);
+            //LCD_ShowChar(192,168,0,36,BLACK);
+            LCD_ShowChar(204,168,38,36,BLACK);	//"."
+// LCD_ShowChar(218,168,0,36,BLACK);
+            LCD_Show_3030_String(240,177,"S",BLACK);
+            /*------------------------------------------------------------*/
+//	LCD_Draw_arrow_key(0,209,30,239,LEFT,WHITE);//两个箭头
+//  LCD_Draw_arrow_key(289,209,319,239,RIGHT,WHITE);
+
+            LCD_draw_arcrectangle(0,206,90,33,5,BLUE,BLACK);//底部按键
+            LCD_draw_arcrectangle(115,206,90,33,5,BLUE,BLACK);
+            LCD_draw_arcrectangle(230,206,90,33,5,BLUE,BLACK);
+            LCD_Show_3030_String(16,212,"BACK",WHITE);
+            LCD_Show_3030_String(131,212,"SAVE",WHITE);
+            LCD_Show_3030_String(246,212,"NEXT",WHITE);
+
+
+        }
+    else if(pagenunber==2)
+        {
+
+
+
+            LCD_draw_arcrectangle(0,0,320,45,5,BLUE,BLACK);//标题框
+            LCD_Show_3636_String(25,10,"CHAN",WHITE);
+            LCD_Show_3636_String(95,10,"TIME",WHITE)	;
+            LCD_Show_3636_String(165,10,"DELAY",WHITE)	;
+            LCD_ShowChar(242,5,2,36,WHITE);
+            LCD_ShowChar(258,5,40,36,WHITE);
+            LCD_ShowChar(274,5,2,36,WHITE);
+
+            /*------------------------------------------------------------*/
+            LCD_draw_arcrectangle(0,46,90,40,5,BLUE,BLACK);	//通道1~4
+            LCD_draw_arcrectangle(90,46,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,56,120,76,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,56,310,76,RIGHT,BLUE);
+            LCD_Show_3030_String(10,56,"CHAN",WHITE);
+            LCD_ShowChar(64,56,32,30,WHITE);
+
+//	LCD_ShowChar(160,48,0,36,BLACK);
+//	LCD_ShowChar(176,48,0,36,BLACK);
+//	LCD_ShowChar(192,48,0,36,BLACK);
+            LCD_ShowChar(204,48,38,36,BLACK);	//"."
+//  LCD_ShowChar(218,48,0,36,BLACK);
+            LCD_Show_3030_String(240,57,"S",BLACK);
+
+            /*------------------------------------------------------------*/
+            LCD_draw_arcrectangle(0,86,90,40,5,BLUE,BLACK);
+            LCD_draw_arcrectangle(90,86,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,96,120,116,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,96,310,116,RIGHT,BLUE);
+            LCD_Show_3030_String(10,96,"CHAN",WHITE);
+            LCD_ShowChar(64,96,33,30,WHITE);
+
+//	LCD_ShowChar(160,88,0,36,BLACK);
+//	LCD_ShowChar(176,88,0,36,BLACK);
+//	LCD_ShowChar(192,88,0,36,BLACK);
+            LCD_ShowChar(204,88,38,36,BLACK);	//"."
+//  LCD_ShowChar(218,88,0,36,BLACK);
+            LCD_Show_3030_String(240,97,"S",BLACK);
+            /*------------------------------------------------------------*/
+
+            LCD_draw_arcrectangle(0,126,90,40,5,BLUE,BLACK);
+            LCD_draw_arcrectangle(90,126,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,136,120,156,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,136,310,156,RIGHT,BLUE);
+            LCD_Show_3030_String(10,136,"CHAN",WHITE);
+            LCD_ShowChar(64,136,34,30,WHITE);
+//
+//	LCD_ShowChar(160,128,0,36,BLACK);
+//	LCD_ShowChar(176,128,0,36,BLACK);
+//	LCD_ShowChar(192,128,0,36,BLACK);
+            LCD_ShowChar(204,128,38,36,BLACK);	//"."
+//  LCD_ShowChar(218,128,0,36,BLACK);
+            LCD_Show_3030_String(240,137,"S",BLACK);
+            /*------------------------------------------------------------*/
+
+            LCD_draw_arcrectangle(0,166,90,40,5,BLUE,BLACK);
+            LCD_draw_arcrectangle(90,166,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,176,120,196,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,176,310,196,RIGHT,BLUE);
+            LCD_Show_3030_String(10,176,"CHAN",WHITE);
+            LCD_ShowChar(64,176,35,30,WHITE);
+
+//	LCD_ShowChar(160,168,0,36,BLACK);
+//	LCD_ShowChar(176,168,0,36,BLACK);
+//	LCD_ShowChar(192,168,0,36,BLACK);
+            LCD_ShowChar(204,168,38,36,BLACK);	//"."
+//  LCD_ShowChar(218,168,0,36,BLACK);
+            LCD_Show_3030_String(240,177,"S",BLACK);
+            /*------------------------------------------------------------*/
+
+//	LCD_Draw_arrow_key(0,209,30,239,LEFT,WHITE);//两个箭头
+//  LCD_Draw_arrow_key(289,209,319,239,RIGHT,WHITE);
+
+            LCD_draw_arcrectangle(0,206,90,33,5,BLUE,BLACK);//底部按键
+            LCD_draw_arcrectangle(230,206,90,33,5,BLUE,BLACK);
+            LCD_Show_3030_String(16,212,"BACK",WHITE);
+            LCD_Show_3030_String(246,212,"SAVE",WHITE);
+
+
+
+
+        }
+
+}
+
+/*
+
+通道开关设置
+pagenumber：1 2 对应两个页面
+
+*/
+void channel_switch_set_page(u8 pagenumber)
+{
+
+    if(pagenumber==1)
+        {
+            LCD_draw_arcrectangle(0,0,320,45,5,RED,BLACK);//标题框
+            LCD_Show_3636_String(25,10,"CHANNEL",WHITE);
+            LCD_Show_3636_String(146,10,"SWITCH",WHITE)	;
+            LCD_ShowChar(242,5,1,36,WHITE);
+            LCD_ShowChar(258,5,40,36,WHITE);
+            LCD_ShowChar(274,5,2,36,WHITE);
+
+
+
+            /*------------------------------------------------------------*/
+            LCD_draw_arcrectangle(0,46,90,40,5,BLUE,BLACK);	//通道1~4
+            LCD_draw_arcrectangle(90,46,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,56,120,76,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,56,310,76,RIGHT,BLUE);
+            LCD_Show_3030_String(10,56,"CHAN",WHITE);
+            LCD_ShowChar(64,56,28,30,WHITE);
+
+
+//LCD_Show_3030_String(185,57,"OFF",BLACK);
+
+
+
+            /*------------------------------------------------------------*/
+            LCD_draw_arcrectangle(0,86,90,40,5,BLUE,BLACK);
+            LCD_draw_arcrectangle(90,86,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,96,120,116,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,96,310,116,RIGHT,BLUE);
+            LCD_Show_3030_String(10,96,"CHAN",WHITE);
+            LCD_ShowChar(64,96,29,30,WHITE);
+
+
+            /*------------------------------------------------------------*/
+
+            LCD_draw_arcrectangle(0,126,90,40,5,BLUE,BLACK);
+            LCD_draw_arcrectangle(90,126,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,136,120,156,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,136,310,156,RIGHT,BLUE);
+            LCD_Show_3030_String(10,136,"CHAN",WHITE);
+            LCD_ShowChar(64,136,30,30,WHITE);
+
+
+
+            /*------------------------------------------------------------*/
+            LCD_draw_arcrectangle(0,166,90,40,5,BLUE,BLACK);
+            LCD_draw_arcrectangle(90,166,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,176,120,196,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,176,310,196,RIGHT,BLUE);
+            LCD_Show_3030_String(10,176,"CHAN",WHITE);
+            LCD_ShowChar(64,176,31,30,WHITE);
+
+
+
+            /*------------------------------------------------------------*/
+//	LCD_Draw_arrow_key(0,209,30,239,LEFT,WHITE);//两个箭头
+//  LCD_Draw_arrow_key(289,209,319,239,RIGHT,WHITE);
+
+            LCD_draw_arcrectangle(0,206,90,33,5,BLUE,BLACK);//底部按键
+            LCD_draw_arcrectangle(115,206,90,33,5,BLUE,BLACK);
+            LCD_draw_arcrectangle(230,206,90,33,5,BLUE,BLACK);
+            LCD_Show_3030_String(16,212,"BACK",WHITE);
+            LCD_Show_3030_String(131,212,"SAVE",WHITE);
+            LCD_Show_3030_String(246,212,"NEXT",WHITE);
+
+        }
+    else if(pagenumber==2)
+        {
+
+            LCD_draw_arcrectangle(0,0,320,45,5,RED,BLACK);//标题框
+            LCD_Show_3636_String(25,10,"CHANNEL",WHITE);
+            LCD_Show_3636_String(146,10,"SWITCH",WHITE)	;
+            LCD_ShowChar(242,5,2,36,WHITE);
+            LCD_ShowChar(258,5,40,36,WHITE);
+            LCD_ShowChar(274,5,2,36,WHITE);
+
+
+            /*------------------------------------------------------------*/
+            LCD_draw_arcrectangle(0,46,90,40,5,BLUE,BLACK);	//通道1~4
+            LCD_draw_arcrectangle(90,46,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,56,120,76,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,56,310,76,RIGHT,BLUE);
+            LCD_Show_3030_String(10,56,"CHAN",WHITE);
+            LCD_ShowChar(64,56,32,30,WHITE);
+
+
+            /*------------------------------------------------------------*/
+            LCD_draw_arcrectangle(0,86,90,40,5,BLUE,BLACK);
+            LCD_draw_arcrectangle(90,86,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,96,120,116,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,96,310,116,RIGHT,BLUE);
+            LCD_Show_3030_String(10,96,"CHAN",WHITE);
+            LCD_ShowChar(64,96,33,30,WHITE);
+
+
+            /*------------------------------------------------------------*/
+
+            LCD_draw_arcrectangle(0,126,90,40,5,BLUE,BLACK);
+            LCD_draw_arcrectangle(90,126,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,136,120,156,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,136,310,156,RIGHT,BLUE);
+            LCD_Show_3030_String(10,136,"CHAN",WHITE);
+            LCD_ShowChar(64,136,34,30,WHITE);
+
+
+            /*------------------------------------------------------------*/
+            LCD_draw_arcrectangle(0,166,90,40,5,BLUE,BLACK);
+            LCD_draw_arcrectangle(90,166,230,40,5,WHITE,BLACK);
+            LCD_DrawLtrigo(100,176,120,196,LEFT,BLUE);//两个三角形
+            LCD_DrawLtrigo(290,176,310,196,RIGHT,BLUE);
+            LCD_Show_3030_String(10,176,"CHAN",WHITE);
+            LCD_ShowChar(64,176,35,30,WHITE);
+
+
+
+            /*------------------------------------------------------------*/
+//	LCD_Draw_arrow_key(0,209,30,239,LEFT,WHITE);//两个箭头
+//  LCD_Draw_arrow_key(289,209,319,239,RIGHT,WHITE);
+
+            LCD_draw_arcrectangle(0,206,90,33,5,BLUE,BLACK);//底部按键
+            LCD_draw_arcrectangle(230,206,90,33,5,BLUE,BLACK);
+            LCD_Show_3030_String(16,212,"BACK",WHITE);
+            LCD_Show_3030_String(246,212,"SAVE",WHITE);
+
+
+        }
+}
+/*---------------------------------------------------------------------*/
+/*
+系统设置主页
+*/
+void system_page(u8 pagenumber)
+{
+
+    if(pagenumber==1)
+        {
+
+            LCD_draw_arcrectangle(0,0,320,45,5,RED,BLACK);
+            LCD_Show_3636_String(90,10,"SYSTEM",WHITE);
+            LCD_ShowChar(186,5,1,36,WHITE);
+            LCD_ShowChar(202,5,40,36,WHITE);
+            LCD_ShowChar(218,5,2,36,WHITE);
+
+            LCD_draw_arcrectangle(50,56,220,40,5,BLUE,BLACK);
+            LCD_Show_3030_String(55,66,"TIME",WHITE);
+            LCD_ShowChar(112,66,37,30,WHITE);
+            LCD_Show_3030_String(128,66,"TIME",WHITE);
+            LCD_Show_3030_String(185,66,"SWITCH",WHITE);
+
+            LCD_draw_arcrectangle(50,106,220,40,5,BLUE,BLACK);
+            LCD_Show_3030_String(90,116,"IP",WHITE);
+            LCD_Show_3030_String(121,116,"ADDRESS",WHITE);
+
+            LCD_draw_arcrectangle(50,156,220,40,5,BLUE,BLACK);
+            LCD_Show_3030_String(75,166,"FACTORY",WHITE);
+            LCD_Show_3030_String(182,166,"RESET",WHITE);
+
+            LCD_draw_arcrectangle(0,206,99,33,5,BLUE,BLACK);//底部按键
+            LCD_Show_3030_String(21,212,"BACK",WHITE);
+            LCD_draw_arcrectangle(221,206,99,33,5,BLUE,BLACK);
+            LCD_Show_3030_String(242,212,"NEXT",WHITE);
+
+        }
+    else if(pagenumber==2)
+        {
+
+            LCD_draw_arcrectangle(0,0,320,45,5,RED,RED);
+            LCD_Show_3636_String(90,10,"SYSTEM",WHITE);
+            LCD_ShowChar(186,5,2,36,WHITE);
+            LCD_ShowChar(202,5,40,36,WHITE);
+            LCD_ShowChar(218,5,2,36,WHITE);
+
+            LCD_draw_arcrectangle(50,56,220,40,5,BLUE,BLACK);
+            LCD_Show_3030_String(70,66,"USER",WHITE);
+            LCD_Show_3030_String(137,66,"PASSWORD",WHITE);
+
+            LCD_draw_arcrectangle(50,106,220,40,5,BLUE,BLACK);
+            LCD_Show_3030_String(70,116,"SETUP",WHITE);
+            LCD_Show_3030_String(145,116,"PASSWORD",WHITE);
+
+//	LCD_draw_arcrectangle(50,156,220,40,5,BLUE,BLACK);
+//	LCD_Show_3030_String(60,166,"REGISTRATION",WHITE);
+//  LCD_Show_3030_String(230,166,"ID",WHITE);
+//
+            LCD_draw_arcrectangle(50,156,220,40,5,BLUE,BLACK);
+            LCD_Show_3030_String(55,166,"UV",WHITE);
+            LCD_ShowChar(81,166,37,30,WHITE);
+            LCD_Show_3030_String(95,166,"OV",WHITE);
+            LCD_Show_3030_String(126,166,"PROTECTION",WHITE);
+
+
+            LCD_draw_arcrectangle(221,206,99,33,5,BLUE,BLACK);//底部按键
+            LCD_Show_3030_String(242,212,"BACK",WHITE);
+
+        }
+
+
+}
+
+/*
+过压欠压保护设置页面
+*/
+void uv_ov_protection_set_page()
+{
+
+
+    LCD_draw_arcrectangle(0,0,320,45,5,RED,BLACK);//标题
+    LCD_Show_3636_String(40,10,"UV",WHITE);
+    LCD_ShowChar(72,10,37,36,WHITE);
+    LCD_Show_3636_String(88,10,"OV",WHITE);
+    LCD_Show_3636_String(125,10,"PROTECTION",WHITE);
+
+
+
+    LCD_draw_arcrectangle(0,56,90,40,5,BLUE,BLACK);	//回差值
+    LCD_draw_arcrectangle(90,56,230,40,5,WHITE,BLACK);
+    LCD_Show_3030_String(25,65,"RDV",WHITE);
+//  LCD_ShowChar(170,58,0,36,BLACK);
+//	LCD_ShowChar(186,58,0,36,BLACK);
+
+    LCD_ShowChar(218,67,21,30,BLACK);//V
+
+
+
+
+    LCD_draw_arcrectangle(0,106,90,40,5,BLUE,BLACK);		//过压值
+    LCD_draw_arcrectangle(90,106,130,40,5,WHITE,BLACK);
+    LCD_draw_arcrectangle(220,106,100,40,5,WHITE,BLACK);
+
+    LCD_DrawLtrigo(100,116,120,136,LEFT,BLUE);//两个三角形
+    LCD_DrawLtrigo(190,116,210,136,RIGHT,BLUE);
+    LCD_DrawLtrigo(230,116,250,136,LEFT,BLUE);//两个三角形
+    LCD_DrawLtrigo(290,116,310,136,RIGHT,BLUE);
+    LCD_Show_3030_String(25,115,"OPV",WHITE);
+
+
+
+
+
+//
+//	LCD_ShowChar(120,108,0,36,BLACK);
+//	LCD_ShowChar(136,108,0,36,BLACK);
+//	LCD_ShowChar(152,108,0,36,BLACK);
+    LCD_ShowChar(168,117,21,30,BLACK);//V
+
+
+
+
+    LCD_draw_arcrectangle(0,156,90,40,5,BLUE,BLACK);	//欠压值
+    LCD_draw_arcrectangle(90,156,130,40,5,WHITE,BLACK);
+    LCD_draw_arcrectangle(220,156,100,40,5,WHITE,BLACK);
+    LCD_DrawLtrigo(100,166,120,186,LEFT,BLUE);//两个三角形
+    LCD_DrawLtrigo(190,166,210,186,RIGHT,BLUE);
+    LCD_Show_3030_String(25,165,"UPV",WHITE);
+
+
+
+    LCD_DrawLtrigo(230,166,250,186,LEFT,BLUE);//两个三角形
+    LCD_DrawLtrigo(290,166,310,186,RIGHT,BLUE);
+
+
+
+//
+//	LCD_ShowChar(120,158,0,36,BLACK);
+//	LCD_ShowChar(136,158,0,36,BLACK);
+//	LCD_ShowChar(152,158,0,36,BLACK);
+    LCD_ShowChar(168,167,21,30,BLACK);//V
+
+
+    LCD_draw_arcrectangle(0,206,99,33,5,BLUE,BLACK);//底部按键
+    LCD_Show_3030_String(21,212,"BACK",WHITE);
+    LCD_draw_arcrectangle(221,206,99,33,5,BLUE,BLACK);
+    LCD_Show_3030_String(242,212,"SAVE",WHITE);
+
+
+
+}
+/*
+本机地址设置页面
+*/
+void ip_address_set_page()
+{
+
+    LCD_draw_arcrectangle(0,86,130,40,5,BLUE,BLACK);
+    LCD_Show_3030_String(1,94,"IP",WHITE);
+    LCD_Show_3030_String(31,94,"ADDRESS",WHITE);
+
+    LCD_draw_arcrectangle(130,86,190,40,5,WHITE,BLACK);
+
+//	LCD_ShowChar(200,93,27,30,BLACK);
+//	LCD_ShowChar(215,93,27,30,BLACK);
+//	LCD_ShowChar(230,93,28,30,BLACK);
+//
+
+
+    LCD_DrawLtrigo(140,96,160,116,LEFT,BLUE);//两个三角形
+    LCD_DrawLtrigo(290,96,310,116,RIGHT,BLUE);
+
+//	LCD_draw_arcrectangle(0,206,99,33,5,BLUE,BLACK);//底部按键
+//	LCD_Show_3030_String(20,212,"BACK",WHITE);
+    LCD_draw_arcrectangle(221,206,99,33,5,BLUE,BLACK);
+    LCD_Show_3030_String(245,212,"SAVE",WHITE);
+
+}
+/*
+恢复出厂设置页面
+*/
+
+void restore_factory_settings_page()
+{
+    LCD_Show_3030_String(15,70,"ARE",WHITE);
+    LCD_Show_3030_String(64,70,"YOU",WHITE);
+    LCD_Show_3030_String(114,70,"SURE",WHITE);
+    LCD_Show_3030_String(176,70,"TO",WHITE);
+    LCD_Show_3030_String(211,70,"RESTORE",WHITE);
+
+    LCD_Show_3030_String(59,100,"FOCTORY",WHITE);
+    LCD_Show_3030_String(171,100,"SETTINGS",WHITE);
+    LCD_ShowChar(285,100,26,30,WHITE);
+
+
+    LCD_draw_arcrectangle(0,206,99,33,5,BLUE,BLACK);
+    LCD_Show_3030_String(30,212,"YES",WHITE);
+
+    LCD_draw_arcrectangle(221,206,99,33,5,BLUE,BLACK);
+    LCD_Show_3030_String(261,212,"NO",WHITE);
+}
+
+/*------------------------------------------------------------*/
+/*
+时间与定时设置页面
+
+*/
+
+void date_timeswitch_set_main_page()
+{
+
+    LCD_draw_arcrectangle(0,0,320,45,5,RED,BLACK);//标题框
+    LCD_Show_3636_String(40,10,"TIME",WHITE);
+    LCD_ShowChar(104,10,37,36,WHITE);
+    LCD_Show_3636_String(120,10,"TIME",WHITE);
+    LCD_Show_3636_String(189,10,"SWITCH",WHITE);
+
+    LCD_draw_arcrectangle(55,73,225,40,5,BLUE,BLACK);	//时间和日期设置
+    LCD_Show_3030_String(100,83,"TIME",WHITE);
+    LCD_ShowChar(157,83,37,30,WHITE);
+    LCD_Show_3030_String(178,83,"DATE",WHITE);
+
+    LCD_draw_arcrectangle(55,129,225,40,5,BLUE,BLACK);//定时开关设置
+    LCD_Show_3030_String(100,139,"TIME",WHITE);
+    LCD_Show_3030_String(160,139,"SWITCH",WHITE);
+
+
+//LCD_draw_arcrectangle(0,206,90,33,5,BLUE,BLACK);//底部按键
+//LCD_Show_3030_String(16,212,"BACK",WHITE);
+    LCD_draw_arcrectangle(230,206,90,33,5,BLUE,BLACK);//底部按键
+    LCD_Show_3030_String(246,212,"BACK",WHITE);
+
+
+
+
+
+
+}
+
+
+
+
+/*
+时间&日期设置页面
+*/
+
+void date_time_set_page()
+{
+
+    LCD_draw_arcrectangle(0,0,320,45,5,RED,BLACK);//标题框
+    LCD_Show_3636_String(90,10,"DATE",WHITE);
+    LCD_ShowChar(154,10,37,36,WHITE);
+    LCD_Show_3636_String(170,10,"TIME",WHITE);
+
+
+
+
+
+    LCD_draw_arcrectangle(0,86,90,40,5,BLUE,BLACK);//日期
+    LCD_draw_arcrectangle(90,86,230,40,5,WHITE,BLACK);
+    LCD_DrawLtrigo(100,96,120,116,LEFT,BLUE);//两个三角形
+    LCD_DrawLtrigo(290,96,310,116,RIGHT,BLUE);
+    LCD_Show_3030_String(10,96,"DATE",WHITE);
+
+//	LCD_ShowChar(120,90,0,36,BLACK);//0
+//	LCD_ShowChar(138,90,0,36, BLACK);//0
+//	LCD_ShowChar(156,90,0,36, BLACK);//0
+//	LCD_ShowChar(174,90,0,36, BLACK);//0
+//	LCD_ShowChar(192,90,39,36,BLACK);//-
+//	LCD_ShowChar(210,90,0,36, BLACK);//0
+//	LCD_ShowChar(228,90,0,36, BLACK);//0
+//	LCD_ShowChar(246,90,39,36,BLACK);//-
+//	LCD_ShowChar(264,90,0,36, BLACK);//0
+//	LCD_ShowChar(282,90,0,36, BLACK);//0
+//
+
+    LCD_draw_arcrectangle(0,126,90,40,5,BLUE,BLACK);	//时间
+    LCD_draw_arcrectangle(90,126,230,40,5,WHITE,BLACK);
+    LCD_DrawLtrigo(100,136,120,156,LEFT,BLUE);//两个三角形
+    LCD_DrawLtrigo(290,136,310,156,RIGHT,BLUE);
+    LCD_Show_3030_String(10,136,"TIME",WHITE);
+
+// 	LCD_ShowChar(170,126,0,36, BLACK);
+//	LCD_ShowChar(188,126,0,36, BLACK);
+//	LCD_ShowChar(200,126,10,36,BLACK);//":"
+//	LCD_ShowChar(211,126,0,36, BLACK);
+//	LCD_ShowChar(229,126,0,36, BLACK);
+//
+
+// LCD_draw_arcrectangle(0,206,90,33,5,BLUE,BLACK);//底部按键
+    LCD_draw_arcrectangle(230,206,90,33,5,BLUE,BLACK);
+//	LCD_Show_3030_String(16,212,"BACK",WHITE);
+    LCD_Show_3030_String(246,212,"SAVE",WHITE);
+
+
+}
+/*
+定时开关设置页面
+
+*/
+
+void time_switch_set_page(u8 switchnum)
+{
+
+    LCD_draw_arcrectangle(0,0,320,45,5,RED,BLACK);//标题框
+    LCD_Show_3636_String(50,10,"TIME",WHITE);
+    LCD_Show_3636_String(120,10,"SWITCH",WHITE);
+
+
+    if(switchnum==1)
+        {
+            LCD_ShowChar(222,5,1,36,WHITE);
+            LCD_ShowChar(238,5,40,36,WHITE);
+            LCD_ShowChar(254,5,3,36,WHITE);
+        }
+    else if(switchnum==2)
+        {
+            LCD_ShowChar(222,5,2,36,WHITE);
+            LCD_ShowChar(238,5,40,36,WHITE);
+            LCD_ShowChar(254,5,3,36,WHITE);
+        }
+    else if(switchnum==3)
+        {
+            LCD_ShowChar(222,5,3,36,WHITE);
+            LCD_ShowChar(238,5,40,36,WHITE);
+            LCD_ShowChar(254,5,3,36,WHITE);
+        }
+
+
+
+    LCD_draw_arcrectangle(0,56,140,40,5,BLUE,BLACK);	//定时通道开机
+    LCD_draw_arcrectangle(140,56,100,40,5,WHITE,BLACK);
+    LCD_draw_arcrectangle(240,56,80,40,5,WHITE,BLACK);
+    LCD_DrawLtrigo(150,66,170,86,LEFT,BLUE);//两个三角形
+    LCD_DrawLtrigo(210,66,230,86,RIGHT,BLUE);
+
+    LCD_Show_3030_String(10,66,"CHAN",WHITE);
+    LCD_Show_3030_String(70,66,"OPEN",WHITE);
+    LCD_Show_3030_String(170,66,"OFF",BLACK);
+    //LCD_Show_3030_String(175,66,"ON",BLACK);
+    LCD_Show_3030_String(250,66,"EDIT",BLACK);
+
+    LCD_draw_arcrectangle(0,106,140,40,5,BLUE,BLACK);		//定时通道关机
+    LCD_draw_arcrectangle(140,106,100,40,5,WHITE,BLACK);
+    LCD_draw_arcrectangle(240,106,80,40,5,WHITE,BLACK);
+    LCD_DrawLtrigo(150,116,170,136,LEFT,BLUE);//两个三角形
+    LCD_DrawLtrigo(210,116,230,136,RIGHT,BLUE);
+
+    LCD_Show_3030_String(5, 116,"CHAN",WHITE);
+    LCD_Show_3030_String(65, 116,"CLOSE",WHITE);
+    //LCD_Show_3030_String(170,116,"OFF",BLACK);
+    LCD_Show_3030_String(175,116,"ON",RED);
+    LCD_Show_3030_String(250,116,"EDIT",BLACK);
+
+    if(!(switchnum==3))
+        {
+
+            LCD_draw_arcrectangle(0,206,90,33,5,BLUE,BLACK);//底部按键
+            LCD_draw_arcrectangle(115,206,90,33,5,BLUE,BLACK);
+            LCD_draw_arcrectangle(230,206,90,33,5,BLUE,BLACK);
+            LCD_Show_3030_String(16,212,"BACK",WHITE);
+            LCD_Show_3030_String(131,212,"SAVE",WHITE);
+            LCD_Show_3030_String(246,212,"NEXT",WHITE);
+
+        }
+    else
+        {
+
+            LCD_draw_arcrectangle(0,206,90,33,5,BLUE,BLACK);//底部按键
+            LCD_draw_arcrectangle(230,206,90,33,5,BLUE,BLACK);
+            LCD_Show_3030_String(16,212,"BACK",WHITE);
+            LCD_Show_3030_String(246,212,"SAVE",WHITE);
+
+        }
+
+}
+
+
+//通道定时开关编辑页面 mode 1:定时开机 0：定时关机
+void chan_time_switch_set_page(u8 mode)
+{
+
+
+
+    LCD_draw_arcrectangle(0,0,320,45,5,RED,BLACK);//标题框
+    if(mode==1)
+        {
+            LCD_Show_3636_String(95,10,"CHAN",WHITE);
+            LCD_Show_3636_String(165,10,"OPEN",WHITE);
+
+        }
+    else if(mode==0)
+        {
+            LCD_Show_3636_String(90,10,"CHAN",WHITE);
+            LCD_Show_3636_String(160,10,"CLOSE",WHITE);
+
+        }
+
+
+
+    LCD_draw_arcrectangle(0,46,90,40,5,BLUE,BLACK);	//通道1~4
+    LCD_draw_arcrectangle(90,46,230,40,5,WHITE,BLACK);
+    LCD_DrawLtrigo(100,56,120,76,LEFT,BLUE);//两个三角形
+    LCD_DrawLtrigo(290,56,310,76,RIGHT,BLUE);
+    LCD_Show_3030_String(15,56,"CHAN",WHITE);
+    LCD_ShowChar(198, 48,1,36,BLACK);//0
+
+    LCD_draw_arcrectangle(0,86,90,40,5,BLUE,BLACK);
+    LCD_draw_arcrectangle(90,86,230,40,5,WHITE,BLACK);
+    LCD_DrawLtrigo(100,96,120,116,LEFT,BLUE);//两个三角形
+    LCD_DrawLtrigo(290,96,310,116,RIGHT,BLUE);
+    LCD_Show_3030_String(15,96,"MODE",WHITE);
+    LCD_Show_3030_String(180,96,"ONCE",BLACK);
+    //LCD_Show_3030_String(180,96,"LOOP",BLACK);
+
+    LCD_draw_arcrectangle(0,126,90,40,5,BLUE,BLACK);
+    LCD_draw_arcrectangle(90,126,230,40,5,WHITE,BLACK);
+    LCD_DrawLtrigo(100,136,120,156,LEFT,BLUE);//两个三角形
+    LCD_DrawLtrigo(290,136,310,156,RIGHT,BLUE);
+    LCD_Show_3030_String(15,136,"DATE",WHITE);
+
+
+    LCD_ShowChar(120,128,0,36,BLACK);//0
+    LCD_ShowChar(138,128,0,36, BLACK);//0
+    LCD_ShowChar(156,128,0,36, BLACK);//0
+    LCD_ShowChar(174,128,0,36, BLACK);//0
+    LCD_ShowChar(192,128,39,36,BLACK);//-
+    LCD_ShowChar(210,128,0,36, BLACK);//0
+    LCD_ShowChar(228,128,0,36, BLACK);//0
+    LCD_ShowChar(246,128,39,36,BLACK);//-
+    LCD_ShowChar(264,128,0,36, BLACK);//0
+    LCD_ShowChar(282,128,0,36, BLACK);//0
+
+//	LCD_DrawLine(120,162,155,162,BLACK);
+    //LCD_DrawLine(156,162,190,162,BLACK);
+//  	LCD_DrawLine(210,162,245,162,BLACK);
+//	LCD_DrawLine(264,162,299,162,BLACK);
+
+    LCD_draw_arcrectangle(0,166,90,40,5,BLUE,BLACK);
+    LCD_draw_arcrectangle(90,166,230,40,5,WHITE,BLACK);
+    LCD_DrawLtrigo(100,176,120,196,LEFT,BLUE);//两个三角形
+    LCD_DrawLtrigo(290,176,310,196,RIGHT,BLUE);
+    LCD_Show_3030_String(15,176,"TIME",WHITE);
+
+    LCD_ShowChar(170,168,0,36, BLACK);
+    LCD_ShowChar(188,168,0,36, BLACK);
+    LCD_ShowChar(200,168,10,36,BLACK);//":"
+    LCD_ShowChar(211,168,0,36, BLACK);
+    LCD_ShowChar(229,168,0,36, BLACK);
+
+//	LCD_DrawLine(170,201,205,201,BLACK);
+//	LCD_DrawLine(211,201,246,201,BLACK);
+//
+
+    LCD_draw_arcrectangle(0,206,90,33,5,BLUE,BLACK);//底部按键
+    LCD_draw_arcrectangle(230,206,90,33,5,BLUE,BLACK);
+    LCD_Show_3030_String(16,212,"BACK",WHITE);
+    LCD_Show_3030_String(246,212,"SAVE",WHITE);//
+
+
+
+}
+
+//通道开关延时相应通道延时时间设置页面
+void delay_set_page(u8 chan_x)
+{
+
+
+    LCD_draw_arcrectangle(0,86,90,40,5,BLUE,BLACK);
+    LCD_draw_arcrectangle(90,86,230,40,5,WHITE,BLACK);
+    LCD_DrawLtrigo(100,96,120,116,LEFT,BLUE);//两个三角形
+    LCD_DrawLtrigo(290,96,310,116,RIGHT,BLUE);
+    LCD_Show_3030_String(10,96,"CHAN",WHITE);
+
+    LCD_ShowChar(64,96,27+chan_x,30,WHITE);
+
+    LCD_ShowChar(160,88,0,36,BLACK);
+    LCD_ShowChar(176,88,0,36,BLACK);
+    LCD_ShowChar(192,88,0,36,BLACK);
+    LCD_ShowChar(204,88,38,36,BLACK);	//"."
+    LCD_ShowChar(218,88,0,36,BLACK);
+    LCD_Show_3030_String(240,97,"S",BLACK);
+
+    LCD_draw_arcrectangle(230,206,90,33,5,BLUE,BLACK);
+    LCD_Show_3030_String(246,212,"SAVE",WHITE);//
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
