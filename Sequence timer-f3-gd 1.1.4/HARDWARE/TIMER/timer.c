@@ -336,7 +336,7 @@ void TIM2_IRQHandler(void)   //TIM3ÖÐ¶Ï
 				  if(PIN_STA==1&&DELAY_STA==0){	//chan8ÒÑ¾­´ò¿ª£¬µÈ´ýÒ»ÃëÖÓÑÓÊ±´				
 						IS_EX_CLOSE=1;							 						
 			    	}
-					LCD_Clear(RED);
+				
 				}
 							
 				if(DELAY_STA==1){

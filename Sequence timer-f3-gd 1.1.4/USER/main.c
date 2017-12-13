@@ -18,6 +18,7 @@
 #include "adc.h"
 #include "usart.h"
 #include "pwm.h"
+#include "rs485.h"
 extern _lcd_dev lcddev;
 extern _flag_dev flag_dev;
 extern u8 TIM3CH1_CAPTURE_STA;//输入状态
@@ -155,24 +156,31 @@ void Test_Out(){
 
 }
 
-
-
-
-
-
-
-
 int main(void)
 {
    
-	 
+	 void InitAll();
+   void Rs485Action();		
+	 InitAll();
+    while(1)
+        {	
+					
+			   //Test_Out();	
+		  	 // Executing_In_MainWhile();			
+		  	Rs485Action();		
+        }
+
+}
+
+void InitAll(){
+	
     delay_init();
-   LCD_IO_FSMC_Init();
-   LCD_Init();
-   gui_init();
-   key_init();
+    LCD_IO_FSMC_Init();
+    LCD_Init();
+    gui_init();
+    key_init();
     //RTC_Init();
-   Adc_Init();
+    Adc_Init();
     //tp_dev.init(); 注释了IIC的初始化函数
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断优先级分组为组2：2位抢占优先级，2位响应优先级     
     GPIO_SetBits(GPIOD,GPIO_Pin_13);
@@ -185,12 +193,19 @@ int main(void)
     Pwm_Init();
     Pwm_Input_Init();
 		Pwm_Output_Init();  
-    while(1)
-        {	
-					
-			  Test_Out();	
-			  Executing_In_MainWhile();			
-		  				
-        }
+	  RS485_Init(9600);
+}
+
+void Rs485Action(){
+	
+	  u8 rs485buf[8],key;
+	  RS485_Read_Data(rs485buf,&key);
+		if(key)//接收到有数据
+		{
+			if(key>8)key=8;//最大是5个数据.
+			
+ 			for(i=0;i<key;i++) LCD_ShowNum(0+i*32,100,rs485buf[i],2,24,BLACK,WHITE);	//显示数据
+			key=0;
+ 		}
 
 }
