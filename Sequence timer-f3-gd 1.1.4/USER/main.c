@@ -165,8 +165,8 @@ int main(void)
     while(1)
         {	
 					
-			   //Test_Out();	
-		  	 // Executing_In_MainWhile();			
+			  Test_Out();	
+		  	Executing_In_MainWhile();			
 		  	Rs485Action();		
         }
 
@@ -189,10 +189,10 @@ void InitAll(){
     flag_dev.lock_sta=L_OPEN;//屏幕lock
     flag_dev.action_flag=HOME;		
 	  TIM2_Init();
-	  TIM5_Init();
-    Pwm_Init();
-    Pwm_Input_Init();
-		Pwm_Output_Init();  
+	 // TIM5_Init();
+   // Pwm_Init();
+   // Pwm_Input_Init();
+		//Pwm_Output_Init();  
 	  RS485_Init(9600);
 }
 
@@ -202,9 +202,12 @@ void Rs485Action(){
 	  RS485_Read_Data(rs485buf,&key);
 		if(key)//接收到有数据
 		{
-			if(key>8)key=8;//最大是5个数据.
+				for(i=0;i<8;i++)
+			{
+				LCD_ShowNum(30+i*32,0,rs485buf[i],2,24,WHITE,BLACK);//显示数据
+			}
 			
- 			for(i=0;i<key;i++) LCD_ShowNum(0+i*32,100,rs485buf[i],2,24,BLACK,WHITE);	//显示数据
+			ArithmaticInUSART(rs485buf);
 			key=0;
  		}
 

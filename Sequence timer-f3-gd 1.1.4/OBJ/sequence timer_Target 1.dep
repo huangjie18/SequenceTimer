@@ -763,7 +763,7 @@ I (.\FWLIB\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (.\FWLIB\inc\stm32f10x_usart.h)(0x504F415E)
 I (.\FWLIB\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\FWLIB\inc\misc.h)(0x4D783BB4)
-F (.\USER\main.c)(0x5A30E73D)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I.\CORE -I.\FWLIB\inc -I.\SYSTEM\delay -I.\SYSTEM\sys -I.\SYSTEM\usart -I.\USER -I.\HARDWARE\LCD -I.\GUI -I.\HARDWARE\24CXX -I.\HARDWARE\IIC -I.\HARDWARE\TOUCH -I.\FLAG&DATA -I.\HARDWARE\RTC -I.\HARDWARE\TIMER -I.\HARDWARE\KEY -I.\HARDWARE\ADC -I.\HARDWARE\RS485 -I.\HARDWARE\RS232 -I.\HARDWARE\PWM-I "F:\Repository\SequenceTimer\SequenceTimer\Sequence timer-f3-gd 1.1.4\RTE"-I D:\MDK5.14\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\MDK5.14\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\obj\main.o --omf_browse .\obj\main.crf --depend .\obj\main.d)
+F (.\USER\main.c)(0x5A322EB6)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I.\CORE -I.\FWLIB\inc -I.\SYSTEM\delay -I.\SYSTEM\sys -I.\SYSTEM\usart -I.\USER -I.\HARDWARE\LCD -I.\GUI -I.\HARDWARE\24CXX -I.\HARDWARE\IIC -I.\HARDWARE\TOUCH -I.\FLAG&DATA -I.\HARDWARE\RTC -I.\HARDWARE\TIMER -I.\HARDWARE\KEY -I.\HARDWARE\ADC -I.\HARDWARE\RS485 -I.\HARDWARE\RS232 -I.\HARDWARE\PWM-I "F:\Repository\SequenceTimer\SequenceTimer\Sequence timer-f3-gd 1.1.4\RTE"-I D:\MDK5.14\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\MDK5.14\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\obj\main.o --omf_browse .\obj\main.crf --depend .\obj\main.d)
 I (USER\stm32f10x.h)(0x5A1230F8)
 I (.\CORE\core_cm3.h)(0x4D523B58)
 I (D:\MDK5.14\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -814,7 +814,7 @@ I (.\HARDWARE\TOUCH\ft5206.h)(0x54B7ACCD)
 I (.\GUI\key_board.h)(0x59EAB0B8)
 I (.\HARDWARE\ADC\adc.h)(0x59F19753)
 I (.\HARDWARE\PWM\pwm.h)(0x5A1FB122)
-I (.\HARDWARE\RS485\rs485.h)(0x5A0A5904)
+I (.\HARDWARE\RS485\rs485.h)(0x5A3220EB)
 F (.\USER\stm32f10x_it.c)(0x59E6E8E4)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I.\CORE -I.\FWLIB\inc -I.\SYSTEM\delay -I.\SYSTEM\sys -I.\SYSTEM\usart -I.\USER -I.\HARDWARE\LCD -I.\GUI -I.\HARDWARE\24CXX -I.\HARDWARE\IIC -I.\HARDWARE\TOUCH -I.\FLAG&DATA -I.\HARDWARE\RTC -I.\HARDWARE\TIMER -I.\HARDWARE\KEY -I.\HARDWARE\ADC -I.\HARDWARE\RS485 -I.\HARDWARE\RS232 -I.\HARDWARE\PWM-I "F:\Repository\SequenceTimer\SequenceTimer\Sequence timer-f3-gd 1.1.4\RTE"-I D:\MDK5.14\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\MDK5.14\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\obj\stm32f10x_it.o --omf_browse .\obj\stm32f10x_it.crf --depend .\obj\stm32f10x_it.d)
 I (USER\stm32f10x_it.h)(0x4D99A426)
 I (USER\stm32f10x.h)(0x5A1230F8)
@@ -1308,8 +1308,8 @@ I (.\FWLIB\inc\stm32f10x_usart.h)(0x504F415E)
 I (.\FWLIB\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\FWLIB\inc\misc.h)(0x4D783BB4)
 I (.\SYSTEM\delay\delay.h)(0x5A136BCD)
-F (.\HARDWARE\RS485\rs485.c)(0x5A30CC4A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I.\CORE -I.\FWLIB\inc -I.\SYSTEM\delay -I.\SYSTEM\sys -I.\SYSTEM\usart -I.\USER -I.\HARDWARE\LCD -I.\GUI -I.\HARDWARE\24CXX -I.\HARDWARE\IIC -I.\HARDWARE\TOUCH -I.\FLAG&DATA -I.\HARDWARE\RTC -I.\HARDWARE\TIMER -I.\HARDWARE\KEY -I.\HARDWARE\ADC -I.\HARDWARE\RS485 -I.\HARDWARE\RS232 -I.\HARDWARE\PWM-I "F:\Repository\SequenceTimer\SequenceTimer\Sequence timer-f3-gd 1.1.4\RTE"-I D:\MDK5.14\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\MDK5.14\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\obj\rs485.o --omf_browse .\obj\rs485.crf --depend .\obj\rs485.d)
-I (HARDWARE\RS485\rs485.h)(0x5A0A5904)
+F (.\HARDWARE\RS485\rs485.c)(0x5A322CB6)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I.\CORE -I.\FWLIB\inc -I.\SYSTEM\delay -I.\SYSTEM\sys -I.\SYSTEM\usart -I.\USER -I.\HARDWARE\LCD -I.\GUI -I.\HARDWARE\24CXX -I.\HARDWARE\IIC -I.\HARDWARE\TOUCH -I.\FLAG&DATA -I.\HARDWARE\RTC -I.\HARDWARE\TIMER -I.\HARDWARE\KEY -I.\HARDWARE\ADC -I.\HARDWARE\RS485 -I.\HARDWARE\RS232 -I.\HARDWARE\PWM-I "F:\Repository\SequenceTimer\SequenceTimer\Sequence timer-f3-gd 1.1.4\RTE"-I D:\MDK5.14\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\MDK5.14\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\obj\rs485.o --omf_browse .\obj\rs485.crf --depend .\obj\rs485.d)
+I (HARDWARE\RS485\rs485.h)(0x5A3220EB)
 I (.\SYSTEM\sys\sys.h)(0x550F951B)
 I (.\USER\stm32f10x.h)(0x5A1230F8)
 I (.\CORE\core_cm3.h)(0x4D523B58)
@@ -1340,6 +1340,8 @@ I (.\FWLIB\inc\stm32f10x_usart.h)(0x504F415E)
 I (.\FWLIB\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\FWLIB\inc\misc.h)(0x4D783BB4)
 I (.\SYSTEM\delay\delay.h)(0x5A136BCD)
+I (.\GUI\main_setting_page.h)(0x59FA6454)
+I (.\HARDWARE\KEY\key.h)(0x5A161D3F)
 F (.\HARDWARE\RS232\rs232.c)(0x5A0A5880)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I.\CORE -I.\FWLIB\inc -I.\SYSTEM\delay -I.\SYSTEM\sys -I.\SYSTEM\usart -I.\USER -I.\HARDWARE\LCD -I.\GUI -I.\HARDWARE\24CXX -I.\HARDWARE\IIC -I.\HARDWARE\TOUCH -I.\FLAG&DATA -I.\HARDWARE\RTC -I.\HARDWARE\TIMER -I.\HARDWARE\KEY -I.\HARDWARE\ADC -I.\HARDWARE\RS485 -I.\HARDWARE\RS232 -I.\HARDWARE\PWM-I "F:\Repository\SequenceTimer\SequenceTimer\Sequence timer-f3-gd 1.1.4\RTE"-I D:\MDK5.14\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\MDK5.14\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\obj\rs232.o --omf_browse .\obj\rs232.crf --depend .\obj\rs232.d)
 I (HARDWARE\RS232\rs232.h)(0x5A03CA6F)
 I (.\SYSTEM\sys\sys.h)(0x550F951B)
