@@ -1,0 +1,30 @@
+
+T21C8 000:333 SEGGER J-Link V4.96d Log File (0000ms, 0274ms total)
+T21C8 000:333 DLL Compiled: Jan 29 2015 11:45:37 (0000ms, 0274ms total)
+T21C8 000:333 Logging started @ 2018-04-02 08:04 (0000ms, 0274ms total)
+T21C8 000:333 JLINK_SetWarnOutHandler(...) (0000ms, 0274ms total)
+T21C8 000:333 JLINK_OpenEx(...)
+Firmware: J-Link ARM-OB STM32 compiled Aug 22 2012 19:52:04
+Hardware: V7.00
+S/N: 20090928
+Feature(s): RDI,FlashDL,FlashBP,JFlash,GDBFull  returns O.K. (0272ms, 0546ms total)
+T21C8 000:605 JLINK_SetErrorOutHandler(...) (0000ms, 0546ms total)
+T21C8 000:605 JLINK_ExecCommand("ProjectFile = "G:\公司项目\时序器程序\Sequence timer-f3-gd 1.1.6 - 综合测试 - 中文界面\JLinkSettings.ini"", ...)  returns 0x00 (0001ms, 0547ms total)
+T21C8 000:645 JLINK_ExecCommand("Device = STM32F103VC", ...)Device "STM32F103VC" selected.  returns 0x00 (0018ms, 0565ms total)
+T21C8 000:663 JLINK_ExecCommand("DisableConnectionTimeout", ...)  returns 0x01 (0000ms, 0565ms total)
+T21C8 000:663 JLINK_GetHardwareVersion()  returns 0x11170 (0000ms, 0565ms total)
+T21C8 000:663 JLINK_GetDLLVersion()  returns 49604 (0000ms, 0565ms total)
+T21C8 000:663 JLINK_GetFirmwareString(...) (0000ms, 0565ms total)
+T21C8 000:694 JLINK_GetDLLVersion()  returns 49604 (0000ms, 0565ms total)
+T21C8 000:694 JLINK_GetCompileDateTime() (0000ms, 0565ms total)
+T21C8 000:704 JLINK_GetFirmwareString(...) (0000ms, 0565ms total)
+T21C8 000:710 JLINK_GetHardwareVersion()  returns 0x11170 (0000ms, 0565ms total)
+T21C8 000:738 JLINK_TIF_Select(JLINKARM_TIF_SWD)  returns 0x00 (0004ms, 0569ms total)
+T21C8 000:742 JLINK_SetSpeed(10000) (0001ms, 0570ms total)
+T21C8 000:743 JLINK_GetId() >0x108 TIF> >0x108 TIF>STM32Fxxxx: Cannot attach to CPU. Trying connect under reset. >0x108 TIF> >0x108 TIF>
+                JLINK_EMU_HasCapEx(0x0000002C)  returns 0x00 (0000ms, 0000ms total)
+                JLINK_EMU_HasCapEx(0x0000002C)  returns 0x00 (0000ms, 0000ms total)
+                returns 0x00000000 (0536ms, 1106ms total)
+T21C8 004:262 JLINK_Close() (0001ms, 1107ms total)
+T21C8 004:262  (0001ms, 1107ms total)
+T21C8 004:262 Closed (0001ms, 1107ms total)
